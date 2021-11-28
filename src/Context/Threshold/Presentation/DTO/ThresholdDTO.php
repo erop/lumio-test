@@ -6,7 +6,9 @@ use Money\Money;
 
 class ThresholdDTO
 {
-    public function __construct(private string $userId, private Money $money)
+    public function __construct(private string              $userId,
+                                private Money               $money,
+                                private ?\DateTimeImmutable $startingFrom = null)
     {
     }
 
@@ -18,5 +20,10 @@ class ThresholdDTO
     public function getMoney(): Money
     {
         return $this->money;
+    }
+
+    public function getStartingFrom(): ?\DateTimeImmutable
+    {
+        return $this->startingFrom;
     }
 }

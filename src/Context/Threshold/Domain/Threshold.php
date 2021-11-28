@@ -20,8 +20,12 @@ class Threshold
         private ?\DateTimeImmutable $startingFrom = null)
     {
         $this->id = (string)Uuid::v4();
-        if (null === $this->startingFrom) {
+        if (null === $startingFrom) {
             $this->startingFrom = new \DateTimeImmutable();
+        } else {
+            if ($startingFrom < new \DateTimeImmutable()) {
+                throw new \DomainException('You can not set starting time in the past');
+            }
         }
     }
 

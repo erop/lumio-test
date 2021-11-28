@@ -2,13 +2,17 @@
 
 namespace App\Context\Transaction\Domain;
 
+use App\Context\Shared\Domain\Money;
 use Symfony\Component\Uid\Uuid;
 
 class Transaction
 {
     private string $id;
 
-    public function __construct(private string $userId, private Money $money, private string $type, private ?\DateTimeImmutable $time = null)
+    public function __construct(private string              $userId,
+                                private Money               $money,
+                                private string              $type,
+                                private ?\DateTimeImmutable $time = null)
     {
         $this->id = (string)Uuid::v4();
         if (null === $time) {

@@ -14,8 +14,10 @@ class SetThresholdHandler implements ICommandHandler
 
     public function __invoke(SetThreshold $command): void
     {
-        $threshold = new Threshold($command->getUserId(), $command->getMoney(), new \DateTimeImmutable());
-        $this->repository->save();
+        $this->repository->save(
+            new Threshold(
+                $command->getUserId(), $command->getMoney(), new \DateTimeImmutable()
+            )
+        );
     }
-
 }

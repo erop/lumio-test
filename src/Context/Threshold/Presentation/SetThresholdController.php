@@ -22,7 +22,9 @@ class SetThresholdController extends AbstractController
         /** @var ThresholdDTO $dto */
         $dto = $this->serializer->deserialize($request->getContent(), ThresholdDTO::class, 'json');
         $money = $dto->getMoney();
-        $command = new SetThreshold($dto->getUserId(), new Money($money->getAmount(), $money->getCurrency()));
+        $command = new SetThreshold(
+            $dto->getUserId(), new Money($money->getAmount(), $money->getCurrency()), $dto->getStartingFrom()
+        );
         $this->commandBus->dispatch($command);
         return new Response(Response::HTTP_CREATED);
     }
