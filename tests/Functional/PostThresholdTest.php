@@ -11,7 +11,7 @@ class PostThresholdTest extends WebTestCase
         $client = self::createClient();
         $json = <<<JSON
 {
-   "userId":"",
+   "userId":"3c330e7a-f056-4bec-b5c1-7a466f03f885",
    "money":{
       "amount":45678,
       "currency":"EUR"
