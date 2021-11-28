@@ -2,7 +2,7 @@
 
 namespace App\Context\Threshold\Domain;
 
-use Money\Money;
+use Symfony\Component\Uid\Uuid;
 
 class Threshold
 {
@@ -13,12 +13,17 @@ class Threshold
         private Money               $money,
         private ?\DateTimeImmutable $startingFrom = null)
     {
-//        $this->id =
+        $this->id = (string)Uuid::v4();
+        if (null === $this->startingFrom) {
+            $this->startingFrom = new \DateTimeImmutable();
+        }
     }
 
-    /**
-     * @return string
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getUserId(): string
     {
         return $this->userId;
