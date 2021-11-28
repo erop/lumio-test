@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Context\Threshold\Domain;
+namespace App\Context\Shared\Domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
