@@ -24,6 +24,6 @@ class SetThresholdController extends AbstractController
         $money = $dto->getMoney();
         $command = new SetThreshold($dto->getUserId(), new Money($money->getAmount(), $money->getCurrency()));
         $this->commandBus->dispatch($command);
-        return new Response();
+        return new Response(Response::HTTP_CREATED);
     }
 }
