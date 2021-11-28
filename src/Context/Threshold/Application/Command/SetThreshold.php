@@ -3,7 +3,7 @@
 namespace App\Context\Threshold\Application\Command;
 
 use App\Context\Shared\Application\Bus\Command\ICommand;
-use Money\Money;
+use App\Context\Shared\Domain\Money;
 
 class SetThreshold implements ICommand
 {
