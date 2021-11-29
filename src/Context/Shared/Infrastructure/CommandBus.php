@@ -8,12 +8,12 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class CommandBus implements ICommandBus
 {
-    public function __construct(private MessageBusInterface $messageBus)
+    public function __construct(private MessageBusInterface $commandBus)
     {
     }
 
     public function dispatch(ICommand $command): void
     {
-        $this->messageBus->dispatch($command);
+        $this->commandBus->dispatch($command);
     }
 }
