@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Context\Threshold\Domain;
+namespace App\Context\Shared\Domain;
 
 use App\Context\Shared\Contracts\MoneyInterface;
 

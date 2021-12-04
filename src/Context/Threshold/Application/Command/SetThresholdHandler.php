@@ -4,7 +4,10 @@ namespace App\Context\Threshold\Application\Command;
 
 use App\Context\Shared\Application\Bus\Command\ICommandHandler;
 use App\Context\Shared\Application\Bus\Event\IIntegrationEventBus;
+use App\Context\Shared\Contracts\MoneyPatternConverter;
+use App\Context\Shared\Integration\Event\ThresholdCreated;
 use App\Context\Threshold\Domain\IThresholdRepository;
+use App\Context\Threshold\Domain\Money;
 use App\Context\Threshold\Domain\Threshold;
 
 class SetThresholdHandler implements ICommandHandler
@@ -20,6 +23,13 @@ class SetThresholdHandler implements ICommandHandler
                 $command->getUserId(), $command->getMoney(), new \DateTimeImmutable()
             )
         );
-        $this->integrationEventBus->dispatch(new ThresholdCreated($threshold->getId()));
+        $this->integrationEventBus->dispatch(
+            new ThresholdCreated(
+                $threshold->getId(),
+                $threshold->getUserId(),
+                MoneyPatternConverter::convert($threshold->getMoney(), Money::class),
+                $threshold->getStartingFrom()
+            )
+        );
     }
 }

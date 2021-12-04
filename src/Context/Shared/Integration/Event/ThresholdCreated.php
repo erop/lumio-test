@@ -3,13 +3,14 @@
 namespace App\Context\Shared\Integration\Event;
 
 use App\Context\Shared\Application\Bus\Event\IntegragionEvent;
-use App\Context\Shared\Domain\Money;
+use App\Context\Shared\Contracts\MoneyInterface;
+
 
 class ThresholdCreated implements IntegragionEvent
 {
     public function __construct(private string             $thresholdId,
                                 private string             $userId,
-                                private Money              $money,
+                                private MoneyInterface     $money,
                                 private \DateTimeImmutable $startingFrom)
     {
     }
@@ -24,7 +25,7 @@ class ThresholdCreated implements IntegragionEvent
         return $this->userId;
     }
 
-    public function getMoney(): Money
+    public function getMoney(): MoneyInterface
     {
         return $this->money;
     }
