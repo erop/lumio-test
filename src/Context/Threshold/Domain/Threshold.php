@@ -2,14 +2,8 @@
 
 namespace App\Context\Threshold\Domain;
 
-use App\Context\Shared\Domain\Money;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
-/**
- * @ORM\Entity(repositoryClass="\App\Context\Threshold\Infrastructure\ThresholdRepository")
- * @ORM\Table(name="thresholds")
- */
 class Threshold
 {
     private string $id;

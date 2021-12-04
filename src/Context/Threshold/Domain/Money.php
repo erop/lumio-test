@@ -1,12 +1,7 @@
 <?php
 
-namespace App\Context\Shared\Domain;
+namespace App\Context\Threshold\Domain;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Embeddable()
- */
 class Money
 {
     public function __construct(private int $amount, private string $currency)
