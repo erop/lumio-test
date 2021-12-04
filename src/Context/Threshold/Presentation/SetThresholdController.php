@@ -30,6 +30,6 @@ class SetThresholdController extends AbstractController
             $dto->getStartingFrom()
         );
         $this->commandBus->dispatch($command);
-        return new Response(Response::HTTP_CREATED);
+        return new Response(null, Response::HTTP_CREATED);
     }
 }
