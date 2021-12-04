@@ -3,8 +3,8 @@
 namespace App\Context\Threshold\Presentation;
 
 use App\Context\Shared\Application\Bus\Command\ICommandBus;
-use App\Context\Shared\Domain\Money;
 use App\Context\Threshold\Application\Command\SetThreshold;
+use App\Context\Threshold\Domain\Money;
 use App\Context\Threshold\Presentation\DTO\ThresholdDTO;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +23,9 @@ class SetThresholdController extends AbstractController
         $dto = $this->serializer->deserialize($request->getContent(), ThresholdDTO::class, 'json');
         $money = $dto->getMoney();
         $command = new SetThreshold(
-            $dto->getUserId(), new Money($money->getAmount(), $money->getCurrency()), $dto->getStartingFrom()
+            $dto->getUserId(),
+            new Money($money->getAmount(), $money->getCurrency()),
+            $dto->getStartingFrom()
         );
         $this->commandBus->dispatch($command);
         return new Response(Response::HTTP_CREATED);
