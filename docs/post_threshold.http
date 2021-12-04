@@ -1,0 +1,11 @@
+POST http://localhost:8000/threshold
+Content-Type: application/json
+
+{
+  "userId": "1",
+  "money": {
+    "amount": 123,
+    "currency": "GBP"
+  },
+  "startingFrom": "2022-01-01 12:34:56"
+}

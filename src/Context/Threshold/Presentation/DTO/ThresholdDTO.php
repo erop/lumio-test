@@ -2,7 +2,7 @@
 
 namespace App\Context\Threshold\Presentation\DTO;
 
-use Money\Money;
+use App\Context\Threshold\Domain\Money;
 
 class ThresholdDTO
 {

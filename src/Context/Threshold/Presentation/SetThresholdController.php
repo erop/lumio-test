@@ -6,6 +6,8 @@ use App\Context\Shared\Application\Bus\Command\ICommandBus;
 use App\Context\Threshold\Application\Command\SetThreshold;
 use App\Context\Threshold\Domain\Money;
 use App\Context\Threshold\Presentation\DTO\ThresholdDTO;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

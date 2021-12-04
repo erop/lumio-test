@@ -4,4 +4,5 @@
 
 threshold:
   path: /threshold
+  methods: POST
   controller: App\Context\Threshold\Presentation\SetThresholdController

@@ -20,7 +20,7 @@ class SetThresholdHandler implements ICommandHandler
     {
         $this->repository->save(
             $threshold = new Threshold(
-                $command->getUserId(), $command->getMoney(), new \DateTimeImmutable()
+                $command->getUserId(), $command->getMoney(), $command->getStartingFrom()
             )
         );
         $this->integrationEventBus->dispatch(
