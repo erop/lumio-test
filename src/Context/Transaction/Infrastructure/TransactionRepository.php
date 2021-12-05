@@ -5,6 +5,7 @@ namespace App\Context\Transaction\Infrastructure;
 use App\Context\Transaction\Domain\Transaction;
 use App\Context\Transaction\Domain\TransactionRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\UnitOfWork;
 use Doctrine\Persistence\ManagerRegistry;
 
 class TransactionRepository extends ServiceEntityRepository implements TransactionRepositoryInterface
@@ -17,5 +18,14 @@ class TransactionRepository extends ServiceEntityRepository implements Transacti
     public function findDayTransactions(string $userId, \DateTimeImmutable $startingFrom): array
     {
         return [];
+    }
+
+    public function save(Transaction $transaction): void
+    {
+        $entityManager = $this->getEntityManager();
+        if (UnitOfWork::STATE_NEW === $entityManager->getUnitOfWork()->getEntityState($transaction)) {
+            $entityManager->persist($transaction);
+        }
+        $entityManager->flush();
     }
 }

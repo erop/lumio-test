@@ -15,3 +15,8 @@ doctrine:
                 type: xml
                 dir: '%kernel.project_dir%/src/Context/Threshold/Infrastructure/Entity'
                 prefix: 'App\Context\Threshold\Domain'
+            context_transaction:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Context/Transaction/Infrastructure/Entity'
+                prefix: 'App\Context\Transaction\Domain'

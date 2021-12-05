@@ -2,9 +2,10 @@
 
 namespace App\Context\Threshold\Infrastructure;
 
-use App\Context\Threshold\Domain\ThresholdRepositoryInterface;
 use App\Context\Threshold\Domain\Threshold;
+use App\Context\Threshold\Domain\ThresholdRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\UnitOfWork;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ThresholdRepository extends ServiceEntityRepository implements ThresholdRepositoryInterface
@@ -17,7 +18,9 @@ class ThresholdRepository extends ServiceEntityRepository implements ThresholdRe
     public function save(Threshold $threshold): void
     {
         $entityManager = $this->getEntityManager();
-        $entityManager->persist($threshold);
+        if (UnitOfWork::STATE_NEW === $entityManager->getUnitOfWork()->getEntityState($threshold)) {
+            $entityManager->persist($threshold);
+        }
         $entityManager->flush();
     }
 }

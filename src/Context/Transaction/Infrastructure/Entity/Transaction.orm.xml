@@ -7,8 +7,9 @@
     <entity name="App\Context\Transaction\Domain\Transaction" table="transactions">
         <id name="id" type="guid"/>
         <field name="userId" type="uuid"/>
-        <field name="startingFrom" type="datetimetz_immutable"/>
         <embedded name="money" class="App\Context\Transaction\Domain\Money"/>
+        <field name="type"/>
+        <field name="time" type="datetimetz_immutable"/>
     </entity>
 
 </doctrine-mapping>
