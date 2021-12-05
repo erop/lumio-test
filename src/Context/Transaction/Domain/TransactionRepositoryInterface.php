@@ -4,6 +4,7 @@ namespace App\Context\Transaction\Domain;
 
 interface TransactionRepositoryInterface
 {
+    public function save(Transaction $transaction): void;
     /**
      * @return array|Transaction[]
      */
