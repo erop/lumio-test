@@ -32,8 +32,6 @@ class SetThresholdHandlerInterface implements CommandHandlerInterface
             MoneyPatternConverter::convert($threshold->getMoney(), Money::class),
             $threshold->getStartingFrom()
         );
-        $this->integrationEventBus->dispatch($integrationEvent, static function (IntegrationEventInterface $integrationEvent) {
-            return (new Envelope($integrationEvent))->with(new DispatchAfterCurrentBusStamp());
-        });
+        $this->integrationEventBus->dispatch($integrationEvent);
     }
 }
