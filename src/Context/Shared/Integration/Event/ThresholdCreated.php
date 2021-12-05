@@ -2,11 +2,11 @@
 
 namespace App\Context\Shared\Integration\Event;
 
-use App\Context\Shared\Application\Bus\Event\IntegragionEvent;
+use App\Context\Shared\Application\Bus\Event\IntegrationEventInterface;
 use App\Context\Shared\Contracts\MoneyInterface;
 
 
-class ThresholdCreated implements IntegragionEvent
+class ThresholdCreated implements IntegrationEventInterface
 {
     public function __construct(private string             $thresholdId,
                                 private string             $userId,

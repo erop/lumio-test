@@ -2,7 +2,7 @@
 
 namespace App\Context\Transaction\Domain;
 
-use App\Context\Shared\Domain\Money;
+use App\Context\Shared\Domain\VO\Money;
 use Symfony\Component\Uid\Uuid;
 
 class Transaction

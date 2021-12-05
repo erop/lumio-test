@@ -2,9 +2,9 @@
 
 namespace App\Context\Shared\Integration\Event;
 
-use App\Context\Shared\Application\Bus\Event\IIntegrationEventHandler;
+use App\Context\Shared\Application\Bus\Event\IntegrationEventHandlerInterface;
 
-class ThresholdCreatedHandler implements IIntegrationEventHandler
+class ThresholdCreatedHandlerInterface implements IntegrationEventHandlerInterface
 {
     public function __construct()
     {

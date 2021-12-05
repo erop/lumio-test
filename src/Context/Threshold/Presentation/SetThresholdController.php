@@ -2,7 +2,7 @@
 
 namespace App\Context\Threshold\Presentation;
 
-use App\Context\Shared\Application\Bus\Command\ICommandBus;
+use App\Context\Shared\Application\Bus\Command\CommandBusInterface;
 use App\Context\Threshold\Application\Command\SetThreshold;
 use App\Context\Threshold\Domain\Money;
 use App\Context\Threshold\Presentation\DTO\ThresholdDTO;
@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class SetThresholdController extends AbstractController
 {
-    public function __construct(private SerializerInterface $serializer, private ICommandBus $commandBus)
+    public function __construct(private SerializerInterface $serializer, private CommandBusInterface $commandBus)
     {
     }
 

@@ -13,9 +13,9 @@ services:
 
 
     _instanceof:
-        App\Context\Shared\Application\Bus\Command\ICommandHandler:
+        App\Context\Shared\Application\Bus\Command\CommandHandlerInterface:
             tags: [ { name: messenger.message_handler, bus: command.bus } ]
-        App\Context\Shared\Application\Bus\Event\IIntegrationEventHandler:
+        App\Context\Shared\Application\Bus\Event\IntegrationEventHandlerInterface:
             tags: [ {name: messenger.message_handler, bus: integration.event.bus } ]
 
     # makes classes in src/ available to be used as services

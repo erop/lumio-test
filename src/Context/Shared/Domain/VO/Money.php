@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Context\Shared\Domain;
+namespace App\Context\Shared\Domain\VO;
 
 use App\Context\Shared\Contracts\MoneyInterface;
 
