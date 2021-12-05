@@ -2,12 +2,12 @@
 
 namespace App\Context\Threshold\Infrastructure;
 
-use App\Context\Threshold\Domain\IThresholdRepository;
+use App\Context\Threshold\Domain\ThresholdRepositoryInterface;
 use App\Context\Threshold\Domain\Threshold;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class ThresholdRepository extends ServiceEntityRepository implements IThresholdRepository
+class ThresholdRepository extends ServiceEntityRepository implements ThresholdRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

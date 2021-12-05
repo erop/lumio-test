@@ -1,30 +1,18 @@
 <?php
 
-namespace App\Context\Transaction\Domain;
+namespace App\Context\Transaction\Application\Command;
 
-use Symfony\Component\Uid\Uuid;
+use App\Context\Shared\Application\Bus\Command\CommandInterface;
+use App\Context\Transaction\Domain\Money;
 
-class Transaction
+class CreateTransaction implements CommandInterface
 {
-    private string $id;
-
-    private string $type;
 
     public function __construct(private string              $userId,
                                 private Money               $money,
-                                string                      $type,
+                                private string              $type,
                                 private ?\DateTimeImmutable $time = null)
     {
-        $this->id = (string)Uuid::v4();
-        $this->type = $type;
-        if (null === $time) {
-            $this->time = new \DateTimeImmutable();
-        }
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getUserId(): string

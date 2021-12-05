@@ -6,3 +6,13 @@ threshold:
     path: /threshold
     methods: POST
     controller: App\Context\Threshold\Presentation\SetThresholdController
+
+debit:
+    path: /debit
+    methods: POST
+    controller: App\Context\Transaction\Presentation\DebitController
+
+credit:
+    path: /credit
+    methods: POST
+    controller: App\Context\Transaction\Presentation\CreditController
