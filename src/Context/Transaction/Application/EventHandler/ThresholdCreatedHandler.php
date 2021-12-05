@@ -23,7 +23,7 @@ class ThresholdCreatedHandler implements IntegrationEventHandlerInterface
         }
         $todayTransactions = $this->repository->findDayTransactions($userId, $startingFrom);
 
-
+        // todo finish implementation
     }
 
     private function isThresholdSetForToday(\DateTimeImmutable $startingFrom)
