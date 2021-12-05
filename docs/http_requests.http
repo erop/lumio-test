@@ -24,3 +24,18 @@ Content-Type: application/json
   "type": "debit",
   "time": "2022-01-01 12:34:56"
 }
+
+###
+
+POST http://localhost:8000/credit
+Content-Type: application/json
+
+{
+  "userId": "ede2d85a-438d-4be2-9c4b-45e254e9fc34",
+  "money": {
+    "amount": 123,
+    "currency": "GBP"
+  },
+  "type": "credit",
+  "time": "2022-01-01 12:34:56"
+}
