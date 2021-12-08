@@ -9,8 +9,7 @@ use App\Context\Transaction\Domain\TransactionRepositoryInterface;
 
 class ThresholdCreatedHandler implements IntegrationEventHandlerInterface
 {
-    public function __construct(private TransactionRepositoryInterface $repository,
-                                private TransactionCalculator          $transactionCalculator)
+    public function __construct(private TransactionRepositoryInterface $repository)
     {
     }
 

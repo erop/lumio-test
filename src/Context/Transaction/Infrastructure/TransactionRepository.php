@@ -15,9 +15,9 @@ class TransactionRepository extends ServiceEntityRepository implements Transacti
         parent::__construct($registry, Transaction::class);
     }
 
-    public function findDayTransactions(string $userId, \DateTimeImmutable $startingFrom): array
+    public function findDayTransactions(string $userId, \DateTimeImmutable $date): array
     {
-        return [];
+        $this->findBy(['userId' => $userId, 'date' => new \DateTimeImmutable()]);
     }
 
     public function save(Transaction $transaction): void
