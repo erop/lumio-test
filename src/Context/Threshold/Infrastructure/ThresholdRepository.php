@@ -23,4 +23,8 @@ class ThresholdRepository extends ServiceEntityRepository implements ThresholdRe
         }
         $entityManager->flush();
     }
+
+    public function findByUserIdAndDate(string $userId, \DateTimeImmutable $date): Threshold
+    {
+    }
 }
