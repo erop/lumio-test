@@ -6,5 +6,5 @@ use App\Context\Transaction\Domain\Model\Threshold;
 
 interface ThresholdAdapterInterface
 {
-    public function findThreshold(string $userId, \DateTimeImmutable $date): Threshold;
+    public function findThreshold(string $userId, \DateTimeImmutable $date): ?Threshold;
 }
