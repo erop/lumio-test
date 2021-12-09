@@ -43,7 +43,7 @@ class CheckThresholdHandler implements CommandHandlerInterface
         $spent = new Money($withdrawal, $thresholdCurrency);
 
         if (0 < $overspending = $withdrawal - $thresholdAmount) {
-            $this->eventBus->dispatch(new OverspendingOccurred($userId, $date, new Money($overspending, $thresholdCurrency)));
+            $this->eventBus->dispatch(new \App\Context\Transaction\Domain\Event\OverspendingOccurred($userId, $date, new Money($overspending, $thresholdCurrency)));
         }
     }
 }
