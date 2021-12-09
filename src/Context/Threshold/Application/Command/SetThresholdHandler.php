@@ -13,7 +13,7 @@ use App\Context\Threshold\Domain\Threshold;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Stamp\DispatchAfterCurrentBusStamp;
 
-class SetThresholdHandlerInterface implements CommandHandlerInterface
+class SetThresholdHandler implements CommandHandlerInterface
 {
     public function __construct(private ThresholdRepositoryInterface $repository, private IntegrationEventBusInterface $integrationEventBus)
     {

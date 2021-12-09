@@ -25,3 +25,5 @@ framework:
 
             integration.event.bus: ~
 
+            event.bus: ~
+
