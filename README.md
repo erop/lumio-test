@@ -23,6 +23,7 @@ We anticipate the task should not take more than several hours - it is ok to mak
 
 
 ### How to run the project
-- Launch local web server with Symfony CLI: `symfony serve`
+- Install all dependencies with `symfony composer install`
 - Run Docker Compose with `make up` or `docker-compose up -d --build`
+- Launch local web server with Symfony CLI: `symfony serve`
 - Start consumer with `symfony console messenger:consume async`
