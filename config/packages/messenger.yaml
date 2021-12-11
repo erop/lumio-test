@@ -15,6 +15,7 @@ framework:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
             App\Context\Shared\Application\Bus\Event\IntegrationEventInterface: async
+            App\Context\Shared\Application\Bus\Command\CommandInterface: async
 
 
         default_bus: command.bus

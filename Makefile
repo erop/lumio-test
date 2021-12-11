@@ -18,3 +18,6 @@ logs:
 
 db:
 	docker-compose exec database sh
+
+migrate:
+	symfony console doctrine:migrations:migrate -q

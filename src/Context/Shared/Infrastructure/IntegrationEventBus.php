@@ -17,7 +17,9 @@ class IntegrationEventBus implements IntegrationEventBusInterface
 
     public function dispatch(IntegrationEventInterface $integrationEvent): void
     {
-        $event = (new Envelope($integrationEvent))->with(new DispatchAfterCurrentBusStamp());
-        $this->integrationEventBus->dispatch($event);
+        $this->integrationEventBus->dispatch(
+            (new Envelope($integrationEvent))
+                ->with(new DispatchAfterCurrentBusStamp())
+        );
     }
 }

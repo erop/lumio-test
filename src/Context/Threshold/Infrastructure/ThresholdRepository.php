@@ -24,10 +24,13 @@ class ThresholdRepository extends ServiceEntityRepository implements ThresholdRe
         $entityManager->flush();
     }
 
-    public function findByUserIdAndDate(string $userId, \DateTimeImmutable $date): ?Threshold
+    public function findLastByUserAndDate(string $userId, \DateTimeImmutable $date): ?Threshold
     {
-        /** @var Threshold $threshold */
-        $threshold = $this->findOneBy(['startingFrom' <= $date], ['startingFrom' => 'DESC']);
-        return $threshold;
+        $dql = 'SELECT t FROM App\Context\Threshold\DOMAIN\Threshold t WHERE t.startingFrom <= :startingFrom ORDER BY t.startingFrom DESC';
+        $query = $this->_em->createQuery($dql)
+            ->setParameter('startingFrom', $date);
+        $result = $query->getFirstResult();
+
+        return $result;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Context\Transaction\Application\Command;
 
-class CheckThreshold
+use App\Context\Shared\Application\Bus\Command\CommandInterface;
+
+class CheckThreshold implements CommandInterface
 {
     public function __construct(private string $userId, private ?\DateTimeImmutable $date = null)
     {

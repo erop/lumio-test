@@ -18,7 +18,7 @@ class ThresholdAdapter implements ThresholdAdapterInterface
     public function findThreshold(string $userId, \DateTimeImmutable $date): ?Threshold
     {
         /** @var ForeignThreshold $foreignThreshold */
-        $foreignThreshold = $this->repository->findByUserIdAndDate($userId, $date);
+        $foreignThreshold = $this->repository->findLastByUserAndDate($userId, $date);
         return new Threshold(
             $foreignThreshold->getUserId(),
             $date,
