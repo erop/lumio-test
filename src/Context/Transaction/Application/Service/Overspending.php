@@ -4,10 +4,11 @@ namespace App\Context\Transaction\Application\Service;
 
 class Overspending
 {
-    public function __construct(private string             $userId,
-                                private \DateTimeImmutable $from,
-                                private \DateTimeImmutable $to,
-                                private array              $transactions)
+    public function __construct(
+        private string             $userId,
+        private \DateTimeImmutable $from,
+        private \DateTimeImmutable $to,
+        private array              $transactions)
     {
     }
 

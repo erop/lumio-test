@@ -7,13 +7,15 @@ use App\Context\Transaction\Domain\Service\ThresholdServiceInterface;
 
 class ThresholdService implements ThresholdServiceInterface
 {
-    public function __construct(private ThresholdAdapterInterface $adapter, private ThresholdConverter $converter)
+    public function __construct(
+        private ThresholdAdapterInterface $adapter,
+        private ThresholdConverter        $converter)
     {
     }
 
     public function findThreshold(string $userId, \DateTimeImmutable $date): Threshold
     {
-        $threshold = $this->converter->convert($this->adapter->findThreshold($userId, $date)) ;
+        $threshold = $this->converter->convert($this->adapter->findThreshold($userId, $date));
         return $threshold;
     }
 }

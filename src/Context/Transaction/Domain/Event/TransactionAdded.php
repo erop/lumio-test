@@ -4,7 +4,10 @@ namespace App\Context\Transaction\Domain\Event;
 
 class TransactionAdded
 {
-    public function __construct(private string $transactionId, private string $userId)
+    public function __construct(
+        private string             $transactionId,
+        private \DateTimeImmutable $time,
+        private string             $userId)
     {
     }
 
@@ -16,5 +19,10 @@ class TransactionAdded
     public function getUserId(): string
     {
         return $this->userId;
+    }
+
+    public function getTime(): \DateTimeImmutable
+    {
+        return $this->time;
     }
 }
