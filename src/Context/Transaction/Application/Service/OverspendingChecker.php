@@ -6,6 +6,5 @@ class OverspendingChecker
 {
     public function checkTransactions()
     {
-        
-}
+    }
 }
