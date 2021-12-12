@@ -4,10 +4,10 @@ Content-Type: application/json
 {
   "userId": "ede2d85a-438d-4be2-9c4b-45e254e9fc34",
   "money": {
-    "amount": 123,
+    "amount": 500,
     "currency": "GBP"
   },
-  "startingFrom": "2022-01-01 12:34:56"
+  "startingFrom": "2022-01-01 11:00:00"
 }
 
 ###
@@ -18,11 +18,11 @@ Content-Type: application/json
 {
   "userId": "ede2d85a-438d-4be2-9c4b-45e254e9fc34",
   "money": {
-    "amount": 123,
+    "amount": 200,
     "currency": "GBP"
   },
   "type": "debit",
-  "time": "2022-02-01 12:34:56"
+  "time": "2022-01-02 13:00:00"
 }
 
 ###
@@ -33,9 +33,9 @@ Content-Type: application/json
 {
   "userId": "ede2d85a-438d-4be2-9c4b-45e254e9fc34",
   "money": {
-    "amount": 123,
+    "amount": 150,
     "currency": "GBP"
   },
   "type": "credit",
-  "time": "2022-02-01 12:34:56"
+  "time": "2022-01-02 14:00:00"
 }
