@@ -8,10 +8,11 @@ use App\Context\Shared\Contracts\MoneyInterface;
 
 class ThresholdCreated implements IntegrationEventInterface
 {
-    public function __construct(private string             $thresholdId,
-                                private string             $userId,
-                                private MoneyInterface     $money,
-                                private \DateTimeImmutable $startingFrom)
+    public function __construct(
+        private string             $thresholdId,
+        private string             $userId,
+        private MoneyInterface     $money,
+        private \DateTimeImmutable $startingFrom)
     {
     }
 
