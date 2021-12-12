@@ -25,7 +25,7 @@ class ThresholdService implements ThresholdServiceInterface
             $struct['date'],
             new Money(
                 $struct['money']['amount'],
-                $struct['money']['currrency']
+                $struct['money']['currency']
             )
         );
     }
