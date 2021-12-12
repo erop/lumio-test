@@ -7,7 +7,10 @@ use App\Context\Threshold\Domain\Money;
 
 class SetThreshold implements CommandInterface
 {
-    public function __construct(private string $userId, private Money $money, private ?\DateTimeImmutable $startingFrom = null)
+    public function __construct(
+        private string              $userId,
+        private Money               $money,
+        private ?\DateTimeImmutable $startingFrom = null)
     {
     }
 
