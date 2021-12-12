@@ -2,15 +2,17 @@
 
 namespace App\Context\Transaction\Application\Command;
 
-use App\Context\Shared\Application\Bus\Command\CommandBusInterface;
 use App\Context\Shared\Application\Bus\Command\CommandHandlerInterface;
+use App\Context\Shared\Application\Bus\Event\EventBusInterface;
+use App\Context\Transaction\Domain\Event\TransactionAdded;
 use App\Context\Transaction\Domain\Transaction;
 use App\Context\Transaction\Domain\TransactionRepositoryInterface;
 
 class CreateTransactionHandler implements CommandHandlerInterface
 {
-    public function __construct(private TransactionRepositoryInterface $repository,
-                                private CommandBusInterface            $commandBus)
+    public function __construct(
+        private TransactionRepositoryInterface $repository,
+        private EventBusInterface              $eventBus)
     {
     }
 
@@ -25,7 +27,13 @@ class CreateTransactionHandler implements CommandHandlerInterface
         );
         $this->repository->save($transaction);
 
-        $customerCommand = new CheckThreshold($userId);
-        $this->commandBus->dispatch($customerCommand);
+        $this->eventBus->dispatch(
+            new TransactionAdded(
+                $transaction->getId(),
+                $transaction->getUserId(),
+                $transaction->getTime(),
+                $transaction->getMoney()
+            )
+        );
     }
 }

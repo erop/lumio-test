@@ -24,7 +24,9 @@ class CheckThresholdOnTransaction implements EventHandlerInterface
         $date = $event->getTime();
         $currency = $event->getMoney()->getCurrency();
 
-        $threshold = $this->thresholdService->findThreshold($userId, $date);
+        if (null === $threshold = $this->thresholdService->findByUserIdAndDate($userId, $date)) {
+            return;
+        }
 
         $outcome = $this->calculatorService->calculateOutcomeInCurrency($userId, $date, $threshold->getMoney()->getCurrency());
 

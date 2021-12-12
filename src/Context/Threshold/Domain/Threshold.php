@@ -2,6 +2,7 @@
 
 namespace App\Context\Threshold\Domain;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Uid\Uuid;
 
 class Threshold
@@ -24,6 +25,19 @@ class Threshold
         }
     }
 
+    public function asArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'userId' => $this->getUserId(),
+            'startingFrom' => $this->getStartingFrom(),
+            'money' => [
+                'amount' => $this->getMoney()->getAmount(),
+                'currency' => $this->getMoney()->getCurrency(),
+            ],
+        ];
+    }
+
     public function getId(): string
     {
         return $this->id;
@@ -34,13 +48,13 @@ class Threshold
         return $this->userId;
     }
 
-    public function getMoney(): Money
-    {
-        return $this->money;
-    }
-
     public function getStartingFrom(): \DateTimeImmutable
     {
         return $this->startingFrom;
+    }
+
+    public function getMoney(): Money
+    {
+        return $this->money;
     }
 }
