@@ -33,7 +33,10 @@ class CheckThresholdOnTransaction implements EventHandlerInterface
         $thresholdAmount = $threshold->getMoney()->getAmount();
         $outcomeAmount = $outcome->getAmount();
         if (0 < $overspending = $outcomeAmount - $thresholdAmount) {
-            $this->logger->info(sprintf('Overspending of "%s%d" occurred for the userId "%s"', $currency, $overspending, $userId));
+            $this->logger->emergency(
+                sprintf('Overspending for "%s%d" over current threshold of "%s%d" occurred for the userId "%s"',
+                    $currency, $overspending, $currency, $thresholdAmount, $userId)
+            );
         }
     }
 }
