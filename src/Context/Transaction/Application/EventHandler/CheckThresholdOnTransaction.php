@@ -4,19 +4,34 @@ namespace App\Context\Transaction\Application\EventHandler;
 
 use App\Context\Shared\Application\Bus\Event\EventHandlerInterface;
 use App\Context\Transaction\Domain\Event\TransactionAdded;
+use App\Context\Transaction\Domain\Service\ThresholdServiceInterface;
+use App\Context\Transaction\Domain\Service\TransactionCalculator;
+use Psr\Log\LoggerInterface;
 
 class CheckThresholdOnTransaction implements EventHandlerInterface
 {
-    public function __construct()
+    public function __construct(
+        private TransactionCalculator     $calculatorService,
+        private ThresholdServiceInterface $thresholdService,
+        private LoggerInterface           $logger
+    )
     {
     }
 
     public function __invoke(TransactionAdded $event): void
     {
-        // todo get all transactions for a given day: TransactionRepository
-        // todo calculate transaction money for selected transactions: TransactionService -> put a collection there and receive the money
-        // todo get threshold for a give date
-        // todo calculate Overspending
-        // todo if Overspending->amount > 0 write to the log
+        $userId = $event->getUserId();
+        $date = $event->getTime();
+        $currency = $event->getMoney()->getCurrency();
+
+        $threshold = $this->thresholdService->findThreshold($userId, $date);
+
+        $outcome = $this->calculatorService->calculateOutcomeInCurrency($userId, $date, $threshold->getMoney()->getCurrency());
+
+        $thresholdAmount = $threshold->getMoney()->getAmount();
+        $outcomeAmount = $outcome->getAmount();
+        if (0 < $overspending = $outcomeAmount - $thresholdAmount) {
+            $this->logger->info(sprintf('Overspending of "%s%d" occurred for the userId "%s"', $currency, $overspending, $userId));
+        }
     }
 }

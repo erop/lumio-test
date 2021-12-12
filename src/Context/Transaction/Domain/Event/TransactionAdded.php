@@ -2,13 +2,21 @@
 
 namespace App\Context\Transaction\Domain\Event;
 
-class TransactionAdded
+use App\Context\Shared\Application\Bus\Event\EventInterface;
+use App\Context\Transaction\Domain\Money;
+
+class TransactionAdded implements EventInterface
 {
+    private \DateTimeImmutable $occurredAt;
+
     public function __construct(
         private string             $transactionId,
+        private string             $userId,
         private \DateTimeImmutable $time,
-        private string             $userId)
+        private Money              $money
+    )
     {
+        $this->occurredAt = new \DateTimeImmutable();
     }
 
     public function getTransactionId(): string
@@ -24,5 +32,15 @@ class TransactionAdded
     public function getTime(): \DateTimeImmutable
     {
         return $this->time;
+    }
+
+    public function getMoney(): Money
+    {
+        return $this->money;
+    }
+
+    public function occurredAt(): \DateTimeImmutable
+    {
+        return $this->occurredAt;
     }
 }
