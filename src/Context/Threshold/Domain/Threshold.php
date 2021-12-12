@@ -2,27 +2,21 @@
 
 namespace App\Context\Threshold\Domain;
 
-use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Uid\Uuid;
 
 class Threshold
 {
     private string $id;
 
+    private \DateTimeImmutable $startingFrom;
+
     public function __construct(
         private string              $userId,
         private Money               $money,
-        private ?\DateTimeImmutable $startingFrom = null)
+        ?\DateTimeImmutable $startingFrom = null)
     {
         $this->id = (string)Uuid::v4();
-        $now = new \DateTimeImmutable();
-        if (null === $startingFrom) {
-            $this->startingFrom = $now;
-        } else {
-            if ($startingFrom < $now) {
-                throw new \DomainException('You can not set starting time in the past');
-            }
-        }
+        $this->startingFrom = $startingFrom ?? new \DateTimeImmutable();
     }
 
     public function asArray(): array
