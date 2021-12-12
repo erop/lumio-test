@@ -3,11 +3,13 @@
 namespace App\Context\Transaction\Domain\Model;
 
 use App\Context\Shared\Contracts\MoneyInterface;
-use App\Context\Shared\Domain\VO\Money;
 
 class Threshold
 {
-    public function __construct(private string $userId, private \DateTimeImmutable $date, private MoneyInterface $money)
+    public function __construct(
+        private string             $userId,
+        private \DateTimeImmutable $startingFrom,
+        private MoneyInterface     $money)
     {
     }
 
@@ -16,9 +18,9 @@ class Threshold
         return $this->userId;
     }
 
-    public function getDate(): \DateTimeImmutable
+    public function getStartingFrom(): \DateTimeImmutable
     {
-        return $this->date;
+        return $this->startingFrom;
     }
 
     public function getMoney(): MoneyInterface

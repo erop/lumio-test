@@ -26,11 +26,13 @@ class ThresholdRepository extends ServiceEntityRepository implements ThresholdRe
 
     public function findLastByUserAndDate(string $userId, \DateTimeImmutable $date): ?Threshold
     {
-        $dql = 'SELECT t FROM App\Context\Threshold\DOMAIN\Threshold t WHERE t.startingFrom <= :startingFrom ORDER BY t.startingFrom DESC';
-        $query = $this->_em->createQuery($dql)
-            ->setParameter('startingFrom', $date);
-        $result = $query->getFirstResult();
+        $qb = $this->createQueryBuilder('t');
+        $qb->andWhere('t.startingFrom <= :date')
+            ->orderBy('t.startingFrom', 'DESC')
+            ->setParameter('date', $date)
+            ->setMaxResults(1);
+        $result = $qb->getQuery()->getResult();
 
-        return $result;
+        return $result[0] ?? null;
     }
 }

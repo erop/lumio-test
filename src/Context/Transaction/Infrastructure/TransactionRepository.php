@@ -15,9 +15,19 @@ class TransactionRepository extends ServiceEntityRepository implements Transacti
         parent::__construct($registry, Transaction::class);
     }
 
-    public function findDayTransactions(string $userId, \DateTimeImmutable $date): array
+    public function findDayTransactions(string $userId, \DateTimeImmutable $date = null): array
     {
-        $this->findBy(['userId' => $userId, 'date' => new \DateTimeImmutable()]);
+        if (null === $date) {
+            $date = new \DateTimeImmutable();
+        }
+        $qb = $this->createQueryBuilder('tr');
+        $qb
+            ->andWhere('tr.time BETWEEN :start AND :end')
+            ->setParameter('start', $date->setTime(0, 0, 0)->format(\DateTimeInterface::ATOM))
+            ->setParameter('end', $date->setTime(23, 59, 59)->format(\DateTimeInterface::ATOM));
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
     }
 
     public function save(Transaction $transaction): void

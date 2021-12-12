@@ -22,7 +22,7 @@ class ThresholdService implements ThresholdServiceInterface
         }
         return new Threshold(
             $struct['userId'],
-            $struct['date'],
+            $struct['startingFrom'],
             new Money(
                 $struct['money']['amount'],
                 $struct['money']['currency']

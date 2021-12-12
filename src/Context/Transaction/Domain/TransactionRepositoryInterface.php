@@ -11,5 +11,5 @@ interface TransactionRepositoryInterface
      * @param \DateTimeImmutable $startingFrom
      * @return array|Transaction[]
      */
-    public function findDayTransactions(string $userId, \DateTimeImmutable $startingFrom): array;
+    public function findDayTransactions(string $userId, \DateTimeImmutable $startingFrom = null): array;
 }
