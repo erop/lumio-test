@@ -28,3 +28,4 @@ We anticipate the task should not take more than several hours - it is ok to mak
 - Execute migration with `make migrate`
 - Launch local web server with Symfony CLI: `symfony serve`
 - In another shell start consumer with `symfony console messenger:consume async`
+- Execute HTTP requests in `docs/http_requests.http` files and look for messages in console with running consumer
